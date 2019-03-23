@@ -1,0 +1,4 @@
+<resources>
+    <string name="app_name">创艺</string>
+    <string name="text">TabLayou还有一个比较强大的地方就是可以配合ViewPager这个控件一起使用，可以随着ViewPager的滑动一起滑动切换Tab，并且点击TabLayout的Tab也可以让ViewPager切换到指定的page，主要是因为TabLayout有一个setupWithViewPager方法可以关联ViewPager。</string>
+</resources>
