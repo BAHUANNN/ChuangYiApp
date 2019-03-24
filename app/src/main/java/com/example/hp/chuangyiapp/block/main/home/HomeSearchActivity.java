@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.SearchView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -25,6 +26,7 @@ public class HomeSearchActivity extends AppCompatActivity {
     private TextView cancerText;
     private TextView clearText;
     private TagFlowLayout flowLayout;
+    private RecyclerView recyclerView;
 
     private String query = "";
     private List<String> queryHistory;
@@ -41,8 +43,8 @@ public class HomeSearchActivity extends AppCompatActivity {
         setContentView(R.layout.activity_home_search);
         dao = new ChuangyiDao(getApplicationContext());
         initData();
-        initFlowLayout();
         initView();
+        initFlowLayout();
     }
 
     private void initData() {
@@ -65,7 +67,7 @@ public class HomeSearchActivity extends AppCompatActivity {
             @Override
             public boolean onTagClick(View view, int position, FlowLayout parent) {
                 query = queryHistory.get(position);
-                Toast.makeText(HomeSearchActivity.this,query,Toast.LENGTH_LONG).show();
+                searchView.setQuery(query,true);
                 return false;
             }
         });
@@ -89,12 +91,21 @@ public class HomeSearchActivity extends AppCompatActivity {
                 flowLayout.getAdapter().notifyDataChanged();
             }
         });
+
+        recyclerView = findViewById(R.id.result_recycler_view);
+        recyclerView.setVisibility(View.GONE);
+        initSearchView();
+    }
+
+    private void initSearchView() {
         searchView = findViewById(R.id.search_view);
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(String s) {
-                dao.insertSearchHistory(s);
+                searchView.clearFocus();//失去焦点
+                dao.insertSearchHistory(s);//插入历史记录
                 query = s;
+                showRecyclerView(query);
                 return false;
             }
             @Override
@@ -102,5 +113,25 @@ public class HomeSearchActivity extends AppCompatActivity {
                 return false;
             }
         });
+        searchView.setOnQueryTextFocusChangeListener(new View.OnFocusChangeListener() {
+            @Override
+            public void onFocusChange(View v, boolean hasFocus) {
+                if(hasFocus)hideRecyclerView();
+            }
+        });
+
+        // 去掉下划线
+        View searchPlate = findViewById(R.id.search_plate);
+        View submitArea = findViewById(R.id.submit_area);
+        searchPlate.setBackground(null);
+        submitArea.setBackground(null);
+    }
+
+    private void hideRecyclerView() {
+        if(recyclerView.getVisibility() == View.VISIBLE) recyclerView.setVisibility(View.GONE);
+    }
+
+    private void showRecyclerView(String query) {
+        if(recyclerView.getVisibility() == View.GONE) recyclerView.setVisibility(View.VISIBLE);
     }
 }

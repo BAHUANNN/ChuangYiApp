@@ -41,7 +41,7 @@
             <ImageView
                 android:layout_width="30dp"
                 android:layout_height="30dp"
-                android:src="@drawable/selector_find" />
+                android:src="@drawable/selector_shop" />
 
         </LinearLayout>
 
@@ -63,7 +63,7 @@
             <ImageView
                 android:layout_width="30dp"
                 android:layout_height="30dp"
-                android:src="@drawable/selector_message" />
+                android:src="@drawable/selector_circle" />
 
         </LinearLayout>
 
@@ -99,5 +99,5 @@
         android:paddingBottom="6dp"
         android:paddingLeft="8dp"
         android:paddingRight="8dp"
-        android:src="@drawable/comui_tab_post" />
+        android:src="@drawable/tab_post" />
 </RelativeLayout>
