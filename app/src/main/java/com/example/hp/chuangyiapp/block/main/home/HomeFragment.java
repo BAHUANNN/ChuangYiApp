@@ -12,14 +12,15 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.example.hp.chuangyiapp.R;
+import com.example.hp.chuangyiapp.base.BaseFragment;
 
 import java.util.ArrayList;
 
-public class HomeFragment extends Fragment {
+public class HomeFragment extends BaseFragment {
 
     private RecyclerView recyclerView;
     private TextView searchText;
-    private ArrayList<String> list;
+    private ArrayList<Integer> list;
 
     @Nullable
     @Override
@@ -40,10 +41,10 @@ public class HomeFragment extends Fragment {
         recyclerView = root.findViewById(R.id.home_recycler_view);
         recyclerView.setLayoutManager(new LinearLayoutManager(root.getContext()));
         list = new ArrayList<>();
-        for (int i = 0; i < 7; i++) {
-            list.add("");
-        }
-        recyclerView.setAdapter(new HomeAdapter(list));
+        list.add(R.drawable.home_one);
+        list.add(R.drawable.home_two);
+        list.add(R.drawable.home_three);
+        recyclerView.setAdapter(new HomeAdapter(list,getContext()));
     }
 
 

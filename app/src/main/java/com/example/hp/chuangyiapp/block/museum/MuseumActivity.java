@@ -2,20 +2,25 @@ package com.example.hp.chuangyiapp.block.museum;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.hp.chuangyiapp.R;
+import com.example.hp.chuangyiapp.base.BaseActivity;
 
-public class MuseumActivity extends AppCompatActivity {
+public class MuseumActivity extends BaseActivity {
 
     private Toolbar toolbar;
     private TextView museumDetail;
+
+    private ImageView headImage;
 
     public static void startMuseumActivity(Context context){
         Intent intent = new Intent(context,MuseumActivity.class);
@@ -46,6 +51,9 @@ public class MuseumActivity extends AppCompatActivity {
                 MuseumDetailActivity.startMuseumDetailActivity(MuseumActivity.this);
             }
         });
+
+        headImage = findViewById(R.id.head_image);
+        headImage.setImageBitmap(BitmapFactory.decodeResource(this.getResources(),R.drawable.home_one));
     }
 
     @Override

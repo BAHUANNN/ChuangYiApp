@@ -4,26 +4,25 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
-import android.support.v7.app.AppCompatActivity;
+import android.support.v4.app.Fragment;
 
 import com.example.hp.chuangyiapp.App;
 
 import java.lang.ref.WeakReference;
 
-public class BaseActivity extends AppCompatActivity {
-
+public class BaseFragment extends Fragment {
     private LoginStatusReceiver receiver;
 
-    class LoginStatusReceiver extends BroadcastReceiver{
-        private WeakReference<BaseActivity> weakActivty;
+    class LoginStatusReceiver extends BroadcastReceiver {
+        private WeakReference<BaseFragment> weakFragment;
 
-        public LoginStatusReceiver(BaseActivity baseActivity){
-            this.weakActivty = new WeakReference(baseActivity);
+        public LoginStatusReceiver(BaseFragment baseFragment){
+            this.weakFragment = new WeakReference(baseFragment);
         }
 
         @Override
         public void onReceive(Context context, Intent intent) {
-                weakActivty.get().loginSuccess();
+            weakFragment.get().loginSuccess();
         }
     }
 
@@ -35,12 +34,19 @@ public class BaseActivity extends AppCompatActivity {
         receiver = new LoginStatusReceiver(this);
         IntentFilter intentFilter = new IntentFilter();
         intentFilter.addAction(App.LOGIN_SUCCESS);
-        registerReceiver(receiver,intentFilter);
+        getActivity().registerReceiver(receiver,intentFilter);
     }
 
     @Override
-    protected void onDestroy() {
+    public void onPause() {
+        super.onPause();
+    }
+
+    @Override
+    public void onDestroy() {
         super.onDestroy();
-        if(receiver != null)unregisterReceiver(receiver);
+        if (receiver != null) {
+            getActivity().unregisterReceiver(receiver);
+        }
     }
 }

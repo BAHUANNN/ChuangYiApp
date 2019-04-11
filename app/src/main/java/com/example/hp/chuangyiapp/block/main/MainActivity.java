@@ -8,16 +8,21 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.Toast;
 
 import com.example.hp.chuangyiapp.R;
+import com.example.hp.chuangyiapp.base.BaseActivity;
+import com.example.hp.chuangyiapp.block.login.LoginActivity;
 import com.example.hp.chuangyiapp.block.main.shop.ShopFragment;
 import com.example.hp.chuangyiapp.block.main.home.HomeFragment;
 import com.example.hp.chuangyiapp.block.main.circle.CircleFragment;
 import com.example.hp.chuangyiapp.block.main.mine.MineFragment;
+import com.example.hp.chuangyiapp.utils.DialogUtil;
+import com.example.hp.chuangyiapp.utils.LoginUtil;
 
 import java.util.ArrayList;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends BaseActivity {
 
     private ViewPager viewPager;
     private LinearLayout home;
@@ -80,6 +85,25 @@ public class MainActivity extends AppCompatActivity {
         circle = findViewById(R.id.bottom_circle);
         mine = findViewById(R.id.bottom_mine);
         plus = findViewById(R.id.bottom_plus);
+
+        plus.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(LoginUtil.isLogin())AddActivity.startAddActivity(MainActivity.this);
+                else{
+                    DialogUtil.showNormalDialog(MainActivity.this, "还未登陆，是否去登陆", new DialogUtil.OnClick() {
+                        @Override
+                        public void onClickPositive() {
+                            LoginActivity.startLoginActivity(MainActivity.this);
+                        }
+                        @Override
+                        public void onClickNegative() {
+                            Toast.makeText(MainActivity.this,"登陆后更多功能~~",Toast.LENGTH_SHORT).show();
+                        }
+                    });
+                }
+            }
+        });
 
         home.setOnClickListener(new View.OnClickListener() {
             @Override

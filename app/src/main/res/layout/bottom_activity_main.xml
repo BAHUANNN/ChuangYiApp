@@ -92,12 +92,10 @@
 
     <ImageView
         android:id="@+id/bottom_plus"
-        android:layout_width="wrap_content"
+        android:layout_width="70dp"
         android:layout_height="match_parent"
         android:layout_alignBottom="@+id/button_layout"
         android:layout_centerHorizontal="true"
         android:paddingBottom="6dp"
-        android:paddingLeft="8dp"
-        android:paddingRight="8dp"
         android:src="@drawable/tab_post" />
 </RelativeLayout>
