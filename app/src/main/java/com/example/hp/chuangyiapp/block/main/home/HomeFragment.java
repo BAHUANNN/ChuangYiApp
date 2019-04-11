@@ -33,18 +33,22 @@ public class HomeFragment extends BaseFragment {
                 HomeSearchActivity.startHomeSearchActivity(container.getContext());
             }
         });
+        initData();
         initRecyclerView(root);
         return root;
+    }
+
+    private void initData() {
+        list = new ArrayList<>();
+        list.add(R.drawable.home_one);
+        list.add(R.drawable.home_two);
+        list.add(R.drawable.home_three);
     }
 
     private void initRecyclerView(View root) {
         recyclerView = root.findViewById(R.id.home_recycler_view);
         recyclerView.setLayoutManager(new LinearLayoutManager(root.getContext()));
-        list = new ArrayList<>();
-        list.add(R.drawable.home_one);
-        list.add(R.drawable.home_two);
-        list.add(R.drawable.home_three);
-        recyclerView.setAdapter(new HomeAdapter(list,getContext()));
+        recyclerView.setAdapter(new HomeAdapter(list));
     }
 
 

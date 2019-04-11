@@ -20,10 +20,8 @@ import java.util.ArrayList;
 public class HomeAdapter extends RecyclerView.Adapter<HomeAdapter.HomeHolder> {
 
     private ArrayList<Integer> list;
-    private Context context;
 
-    public HomeAdapter(ArrayList<Integer> list, Context context){
-        this.context = context;
+    public HomeAdapter(ArrayList<Integer> list){
         this.list = list;
     }
 
@@ -55,13 +53,13 @@ public class HomeAdapter extends RecyclerView.Adapter<HomeAdapter.HomeHolder> {
             imageView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    MuseumActivity.startMuseumActivity(context);
+                    MuseumActivity.startMuseumActivity(itemView.getContext());
                 }
             });
         }
 
         public void bind(int i) {
-            Glide.with(context).load(list.get(i)).into(imageView);
+            Glide.with(imageView.getContext()).load(list.get(i)).into(imageView);
         }
     }
 }

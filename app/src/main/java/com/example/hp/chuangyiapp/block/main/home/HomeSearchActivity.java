@@ -18,6 +18,7 @@ import com.zhy.view.flowlayout.FlowLayout;
 import com.zhy.view.flowlayout.TagAdapter;
 import com.zhy.view.flowlayout.TagFlowLayout;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class HomeSearchActivity extends AppCompatActivity {
@@ -42,13 +43,17 @@ public class HomeSearchActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home_search);
         dao = new ChuangyiDao(getApplicationContext());
+        queryHistory = new ArrayList<>();
         initData();
         initView();
         initFlowLayout();
     }
 
     private void initData() {
-        queryHistory = dao.loadSearchHistory();
+        queryHistory.clear();
+        for (String history : dao.loadSearchHistory()) {
+            queryHistory.add(history);
+        }
     }
 
     private void initFlowLayout() {

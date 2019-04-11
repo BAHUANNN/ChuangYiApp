@@ -4,10 +4,10 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.text.method.PasswordTransformationMethod;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.hp.chuangyiapp.App;
@@ -16,8 +16,9 @@ import com.example.hp.chuangyiapp.base.BaseActivity;
 import com.example.hp.chuangyiapp.utils.PreferenceUtil;
 
 public class LoginActivity extends BaseActivity {
-    private EditText userIdText;
+    private EditText userAcText;
     private EditText userPasText;
+    private TextView signupText;
     private Button loginButton;
 
     public static void startLoginActivity(Context context){
@@ -33,14 +34,21 @@ public class LoginActivity extends BaseActivity {
     }
 
     private void initView() {
-        userIdText = findViewById(R.id.user_id_text);
+        userAcText = findViewById(R.id.user_ac_text);
         userPasText = findViewById(R.id.user_pas_text);
-        userPasText.setTransformationMethod(PasswordTransformationMethod.getInstance());
         loginButton = findViewById(R.id.login_button);
         loginButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                login(userIdText.getText().toString(),userPasText.getText().toString());
+                login(userAcText.getText().toString(),userPasText.getText().toString());
+            }
+        });
+
+        signupText = findViewById(R.id.link_signup);
+        signupText.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                SignupActivity.startSignupActivity(LoginActivity.this);
             }
         });
     }
