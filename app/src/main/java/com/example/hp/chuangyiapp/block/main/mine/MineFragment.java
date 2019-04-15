@@ -1,5 +1,6 @@
 package com.example.hp.chuangyiapp.block.main.mine;
 
+import android.app.Dialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -14,6 +15,7 @@ import com.example.hp.chuangyiapp.App;
 import com.example.hp.chuangyiapp.R;
 import com.example.hp.chuangyiapp.base.BaseFragment;
 import com.example.hp.chuangyiapp.block.login.LoginActivity;
+import com.example.hp.chuangyiapp.utils.DialogUtil;
 import com.example.hp.chuangyiapp.utils.LoginUtil;
 import com.example.hp.chuangyiapp.utils.PreferenceUtil;
 
@@ -41,17 +43,12 @@ public class MineFragment extends BaseFragment {
 
     private void initView(View root) {
         idText = root.findViewById(R.id.mine_id);
-        idText.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                LoginActivity.startLoginActivity(getContext());
-            }
-        });
         settingText = root.findViewById(R.id.setting_text);
         settingText.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                quitLogined();
+                if(LoginUtil.isLogin()) quitLogined();
+                else goLogin();
             }
         });
         circleImageView = root.findViewById(R.id.mine_photo);
@@ -61,19 +58,33 @@ public class MineFragment extends BaseFragment {
 
     private void logined(){
         String id = PreferenceUtil.getString(PreferenceUtil.USER_ID,"游客");
-        idText.setClickable(false);
         idText.setText(id);
         idText.setTextColor(getResources().getColor(R.color.textColorPrimary));
+        settingText.setText("退出登陆");
         circleImageView.setImageDrawable(getResources().getDrawable(R.drawable.head_portrait));
     }
 
 
+    private void goLogin() {
+        LoginActivity.startLoginActivity(getContext());
+    }
+
     private void quitLogined(){
-        PreferenceUtil.saveBoolean(PreferenceUtil.IS_LOGIN,false);
-        idText.setClickable(true);
-        idText.setText("点击登录");
-        idText.setTextColor(getResources().getColor(R.color.textColorSecondary));
-        circleImageView.setImageDrawable(getResources().getDrawable(R.drawable.head_portrait_without));
+        DialogUtil.showNormalDialog(getContext(), "您确定要退出登陆吗？", new DialogUtil.OnClick() {
+            @Override
+            public void onClickPositive() {
+                PreferenceUtil.saveBoolean(PreferenceUtil.IS_LOGIN,false);
+                idText.setText("暂未登录");
+                idText.setTextColor(getResources().getColor(R.color.textColorSecondary));
+                settingText.setText("登陆账号");
+                circleImageView.setImageDrawable(getResources().getDrawable(R.drawable.head_portrait_without));
+            }
+            @Override
+            public void onClickNegative() {
+                //do nothing
+            }
+        });
+
     }
 
     @Override

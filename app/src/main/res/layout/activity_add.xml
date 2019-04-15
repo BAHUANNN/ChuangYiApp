@@ -55,6 +55,6 @@
         android:layout_height="wrap_content"
         android:gravity="right"
         android:paddingEnd="30dp"
-        android:text="0/60"
+        android:text="0/120"
         android:textSize="15sp" />
 </LinearLayout>

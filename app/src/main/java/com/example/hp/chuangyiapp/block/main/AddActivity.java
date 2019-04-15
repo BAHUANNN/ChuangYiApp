@@ -46,8 +46,8 @@ public class AddActivity extends BaseActivity {
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
                 int num = s.length();
-                counter.setText(num + "" + "/60");
-                if(num > 60 )counter.setTextColor(Color.RED);
+                counter.setText(num + "" + "/120");
+                if(num > 120 )counter.setTextColor(Color.RED);
                 else counter.setTextColor(R.attr.titleTextColor);
             }
             @Override
@@ -70,6 +70,6 @@ public class AddActivity extends BaseActivity {
     }
 
     private void postMessage(String content) {
-
+        //todo
     }
 }

@@ -22,7 +22,7 @@
             android:id="@+id/mine_id"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="点击登录"
+            android:text="暂未登录"
             android:textSize="25sp"
             android:textColor="@color/textColorSecondary"
             android:layout_gravity="center"/>
@@ -33,7 +33,7 @@
         android:id="@+id/setting_text"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="设置"
+        android:text="登陆账号"
         android:textSize="20sp"
         android:textColor="@color/textColorPrimary"
         android:paddingStart="25dp"
