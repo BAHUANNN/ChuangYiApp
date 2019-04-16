@@ -73,7 +73,7 @@ public class MineFragment extends BaseFragment {
         DialogUtil.showNormalDialog(getContext(), "您确定要退出登陆吗？", new DialogUtil.OnClick() {
             @Override
             public void onClickPositive() {
-                PreferenceUtil.saveBoolean(PreferenceUtil.IS_LOGIN,false);
+                LoginUtil.quitLogin();
                 idText.setText("暂未登录");
                 idText.setTextColor(getResources().getColor(R.color.textColorSecondary));
                 settingText.setText("登陆账号");

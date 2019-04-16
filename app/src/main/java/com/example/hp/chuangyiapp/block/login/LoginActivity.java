@@ -13,6 +13,7 @@ import android.widget.Toast;
 import com.example.hp.chuangyiapp.App;
 import com.example.hp.chuangyiapp.R;
 import com.example.hp.chuangyiapp.base.BaseActivity;
+import com.example.hp.chuangyiapp.utils.LoginUtil;
 import com.example.hp.chuangyiapp.utils.PreferenceUtil;
 
 public class LoginActivity extends BaseActivity {
@@ -53,10 +54,9 @@ public class LoginActivity extends BaseActivity {
         });
     }
 
-    private void login(String id,String pas){
-        if(isLoginSuccess(id,pas)){
-            PreferenceUtil.saveBoolean(PreferenceUtil.IS_LOGIN,true);
-            PreferenceUtil.saveString(PreferenceUtil.USER_ID,id);
+    private void login(String account,String pas){
+        if(isLoginSuccess(account,pas)){
+            LoginUtil.login();
             Intent intent = new Intent();
             intent.setAction(App.LOGIN_SUCCESS);
             sendBroadcast(intent);

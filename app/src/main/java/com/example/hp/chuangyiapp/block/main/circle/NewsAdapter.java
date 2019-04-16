@@ -9,7 +9,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.hp.chuangyiapp.R;
-import com.example.hp.chuangyiapp.block.main.home.HomeAdapter;
+import com.example.hp.chuangyiapp.block.main.circle.news.NewsActivity;
 import com.example.hp.chuangyiapp.net.bean.NewsBean;
 
 import java.util.List;
@@ -56,6 +56,12 @@ public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.NewsHolder> {
         }
 
         public void bind(NewsBean newBean) {
+            titleText.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    NewsActivity.startNewsActivity(titleText.getContext(),"");
+                }
+            });
             //todo
         }
     }

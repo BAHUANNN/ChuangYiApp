@@ -23,7 +23,6 @@ public class CampusRetrofit {
                 .addConverterFactory(GsonConverterFactory.create())
                 .addCallAdapterFactory(RxJavaCallAdapterFactory.create())
                 .baseUrl(BASE_URL)
-                //http://39.108.79.110:5678/api/
                 .build();
         mRetrofitService = retrofit.create(RetrofitService.class);
 
