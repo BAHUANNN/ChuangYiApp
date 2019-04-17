@@ -5,16 +5,17 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import com.example.hp.chuangyiapp.R;
-import com.example.hp.chuangyiapp.net.bean.StateBean;
+import com.example.hp.chuangyiapp.net.bean.StatesBean;
 
 import java.util.List;
 
 class StatesAdapter extends RecyclerView.Adapter<StatesAdapter.StateHolder> {
-    private final List<StateBean> states;
+    private final List<StatesBean.FeedlistBean> states;
 
-    public StatesAdapter(List<StateBean> states) {
+    public StatesAdapter(List<StatesBean.FeedlistBean> states) {
         this.states = states;
     }
 
@@ -37,13 +38,22 @@ class StatesAdapter extends RecyclerView.Adapter<StatesAdapter.StateHolder> {
 
     class StateHolder extends RecyclerView.ViewHolder {
 
+        private TextView idText;
+        private TextView contentText;
+        private TextView dataText;
+
         public StateHolder(@NonNull View itemView) {
             super(itemView);
+            idText = itemView.findViewById(R.id.user_id_text);
+            contentText = itemView.findViewById(R.id.content_text);
+            dataText = itemView.findViewById(R.id.date_text);
         }
 
 
-        public void bind(StateBean stateBean) {
-
+        public void bind(StatesBean.FeedlistBean stateBean) {
+            idText.setText(stateBean.getUsername());
+            contentText.setText(stateBean.getContent());
+            dataText.setText(stateBean.getTime());
         }
     }
 }

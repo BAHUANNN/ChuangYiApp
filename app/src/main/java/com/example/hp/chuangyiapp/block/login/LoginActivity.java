@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -13,8 +14,23 @@ import android.widget.Toast;
 import com.example.hp.chuangyiapp.App;
 import com.example.hp.chuangyiapp.R;
 import com.example.hp.chuangyiapp.base.BaseActivity;
+import com.example.hp.chuangyiapp.net.CampusFactory;
+import com.example.hp.chuangyiapp.net.bean.LoginBean;
+import com.example.hp.chuangyiapp.net.bean.LoginParam;
 import com.example.hp.chuangyiapp.utils.LoginUtil;
 import com.example.hp.chuangyiapp.utils.PreferenceUtil;
+import com.google.gson.Gson;
+
+import org.json.JSONObject;
+
+import java.util.HashMap;
+import java.util.Map;
+
+import okhttp3.MediaType;
+import okhttp3.RequestBody;
+import rx.Observer;
+import rx.android.schedulers.AndroidSchedulers;
+import rx.schedulers.Schedulers;
 
 public class LoginActivity extends BaseActivity {
     private EditText userAcText;
@@ -54,20 +70,38 @@ public class LoginActivity extends BaseActivity {
         });
     }
 
-    private void login(String account,String pas){
-        if(isLoginSuccess(account,pas)){
-            LoginUtil.login();
-            Intent intent = new Intent();
-            intent.setAction(App.LOGIN_SUCCESS);
-            sendBroadcast(intent);
+    private void login(String account,String password){
+        Gson gson = new Gson();
+        HashMap<String,String> paramsMap = new HashMap<>();
+        paramsMap.put("account",account);
+        paramsMap.put("password",password);
+        String strEntity = gson.toJson(paramsMap);
+        RequestBody body = RequestBody.create(okhttp3.MediaType.parse("application/json;charset=UTF-8"),strEntity);
+        Log.i("post ",strEntity);
 
-            finish();//自动关闭页
-        }else {
-            Toast.makeText(this,"账号或密码错误",Toast.LENGTH_SHORT).show();
-        }
-    }
+        CampusFactory.getRetrofitService().signin(body)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new Observer<LoginBean>() {
+                    @Override
+                    public void onCompleted() {
+                        Toast.makeText(LoginActivity.this,"登录成功",Toast.LENGTH_SHORT).show();
+                        finish();//自动关闭页
+                    }
 
-    private boolean isLoginSuccess(String id,String pas) {
-        return id.equals("id") && pas.equals("pas");
+                    @Override
+                    public void onError(Throwable e) {
+                        Log.i("WHATEVER",e.getMessage());
+                        Toast.makeText(LoginActivity.this,"登录失败",Toast.LENGTH_SHORT).show();
+                    }
+
+                    @Override
+                    public void onNext(LoginBean loginBean) {
+                        LoginUtil.login(loginBean.getToken(),loginBean.getUsername());
+                        Intent intent = new Intent();
+                        intent.setAction(App.LOGIN_SUCCESS);
+                        sendBroadcast(intent);
+                    }
+                });
     }
 }

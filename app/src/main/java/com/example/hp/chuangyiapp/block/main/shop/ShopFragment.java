@@ -25,7 +25,7 @@ public class ShopFragment extends BaseFragment {
         imageView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                WebActivity.startWebActivity(getContext(),"https://k.weidian.com/CzcLldMO");
             }
         });
         return root;

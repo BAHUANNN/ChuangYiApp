@@ -4,6 +4,7 @@ import android.app.Dialog;
 import android.content.Context;
 import android.os.Bundle;
 import android.support.v4.app.DialogFragment;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
 import android.view.ViewTreeObserver;
@@ -14,14 +15,22 @@ import android.widget.EditText;
 import android.widget.ImageView;
 
 import com.example.hp.chuangyiapp.R;
+import com.example.hp.chuangyiapp.net.CampusFactory;
+import com.example.hp.chuangyiapp.utils.LoginUtil;
+import com.google.gson.Gson;
 
+import java.util.HashMap;
 import java.util.Timer;
 import java.util.TimerTask;
+
+import okhttp3.RequestBody;
+import rx.android.schedulers.AndroidSchedulers;
+import rx.schedulers.Schedulers;
 
 public class CommentDialogFragment extends DialogFragment {
 
     public interface OnPost{
-        void post();
+        void post(String s);
     }
 
     private Dialog mDialog;
@@ -59,16 +68,12 @@ public class CommentDialogFragment extends DialogFragment {
         postButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(onPost != null)onPost.post();
+                if(onPost != null)onPost.post(commentEditText.getText().toString());
                 dismiss();
             }
         });
 
         return mDialog;
-    }
-
-    private void post(String s) {
-        //todo
     }
 
     private void showSoftKeyboard() {

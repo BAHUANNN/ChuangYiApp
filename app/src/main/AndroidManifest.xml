@@ -3,6 +3,8 @@
     package="com.example.hp.chuangyiapp">
 
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
 
     <application
         android:name=".App"
@@ -16,21 +18,23 @@
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <action android:name="android.intent.action.VIEW" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".base.BaseActivity" />
+        <activity android:name=".block.museum.MuseumActivity" />
+        <activity android:name=".block.museum.MuseumDetailActivity" />
+        <activity android:name=".block.main.home.HomeSearchActivity" />
+        <activity android:name=".block.login.LoginActivity" />
+        <activity android:name=".block.login.SignupActivity" />
+        <activity android:name=".block.web.WebActivity" />
+        <activity android:name=".block.main.AddActivity" />
+        <activity
+            android:name=".block.main.circle.news.NewsActivity"
+            android:windowSoftInputMode="stateHidden|adjustPan" />
+        <activity android:name=".block.main.mine.AboutActivity" />
 
-        <activity android:name=".base.BaseActivity"/>
-        <activity android:name=".block.museum.MuseumActivity"/>
-        <activity android:name=".block.museum.MuseumDetailActivity"/>
-        <activity android:name=".block.main.home.HomeSearchActivity"/>
-        <activity android:name=".block.login.LoginActivity"/>
-        <activity android:name=".block.login.SignupActivity"/>
-        <activity android:name=".block.web.WebActivity"/>
-        <activity android:name=".block.main.AddActivity"/>
-        <activity android:name=".block.main.circle.news.NewsActivity"
-            android:windowSoftInputMode="stateHidden|adjustPan"/>
-        <activity android:name=".block.main.mine.AboutActivity"/>
     </application>
 
 </manifest>

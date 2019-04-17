@@ -13,6 +13,7 @@ import android.widget.TextView;
 
 import com.example.hp.chuangyiapp.R;
 import com.example.hp.chuangyiapp.base.BaseFragment;
+import com.example.hp.chuangyiapp.net.bean.HomeItemBean;
 
 import java.util.ArrayList;
 
@@ -20,7 +21,7 @@ public class HomeFragment extends BaseFragment {
 
     private RecyclerView recyclerView;
     private TextView searchText;
-    private ArrayList<Integer> list;
+    private ArrayList<HomeItemBean> list = new ArrayList<>();
 
     @Nullable
     @Override
@@ -39,10 +40,10 @@ public class HomeFragment extends BaseFragment {
     }
 
     private void initData() {
-        list = new ArrayList<>();
-        list.add(R.drawable.home_one);
-        list.add(R.drawable.home_two);
-        list.add(R.drawable.home_three);
+        list.clear();
+        list.add(new HomeItemBean(R.drawable.home_one,""));
+        list.add(new HomeItemBean(R.drawable.home_two,""));
+        list.add(new HomeItemBean(R.drawable.home_three,""));
     }
 
     private void initRecyclerView(View root) {

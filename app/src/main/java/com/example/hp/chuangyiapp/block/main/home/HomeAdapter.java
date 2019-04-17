@@ -14,14 +14,15 @@ import com.bumptech.glide.Glide;
 import com.example.hp.chuangyiapp.App;
 import com.example.hp.chuangyiapp.R;
 import com.example.hp.chuangyiapp.block.museum.MuseumActivity;
+import com.example.hp.chuangyiapp.net.bean.HomeItemBean;
 
 import java.util.ArrayList;
 
 public class HomeAdapter extends RecyclerView.Adapter<HomeAdapter.HomeHolder> {
 
-    private ArrayList<Integer> list;
+    private ArrayList<HomeItemBean> list;
 
-    public HomeAdapter(ArrayList<Integer> list){
+    public HomeAdapter(ArrayList<HomeItemBean> list){
         this.list = list;
     }
 
@@ -35,7 +36,7 @@ public class HomeAdapter extends RecyclerView.Adapter<HomeAdapter.HomeHolder> {
 
     @Override
     public void onBindViewHolder(@NonNull HomeHolder homeHolder, int i) {
-        homeHolder.bind(i);
+        homeHolder.bind(list.get(i));
     }
 
     @Override
@@ -58,8 +59,14 @@ public class HomeAdapter extends RecyclerView.Adapter<HomeAdapter.HomeHolder> {
             });
         }
 
-        public void bind(int i) {
-            Glide.with(imageView.getContext()).load(list.get(i)).into(imageView);
+        public void bind(HomeItemBean homeItemBean) {
+            Glide.with(imageView.getContext()).load(homeItemBean.getDrawableId()).into(imageView);
+            imageView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    MuseumActivity.startMuseumActivity(imageView.getContext());
+                }
+            });
         }
     }
 }

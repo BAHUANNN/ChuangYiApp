@@ -9,7 +9,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class CampusRetrofit {
     private final RetrofitService mRetrofitService;
-    public static final String BASE_URL = "https://whatever";
+    public static final String BASE_URL = "http://120.78.194.125:5000/api/v1.0/";
 
     public CampusRetrofit() {
         OkHttpClient client = new OkHttpClient.Builder()

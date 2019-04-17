@@ -25,6 +25,7 @@ public class MineFragment extends BaseFragment {
 
     private TextView idText;
     private TextView settingText;
+    private TextView aboutText;
     private CircleImageView circleImageView;
 
     @Nullable
@@ -53,12 +54,20 @@ public class MineFragment extends BaseFragment {
         });
         circleImageView = root.findViewById(R.id.mine_photo);
 
+        aboutText = root.findViewById(R.id.about_text);
+        aboutText.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                AboutActivity.startAboutActivity(getContext());
+            }
+        });
+
         if(LoginUtil.isLogin())logined();
     }
 
     private void logined(){
-        String id = PreferenceUtil.getString(PreferenceUtil.USER_ID,"游客");
-        idText.setText(id);
+        String name = PreferenceUtil.getString(PreferenceUtil.USER_NAME);
+        idText.setText(name);
         idText.setTextColor(getResources().getColor(R.color.textColorPrimary));
         settingText.setText("退出登陆");
         circleImageView.setImageDrawable(getResources().getDrawable(R.drawable.head_portrait));

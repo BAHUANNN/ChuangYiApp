@@ -37,11 +37,12 @@
         <android.support.design.widget.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:counterMaxLength="8"
+            app:counterMaxLength="16"
             app:counterEnabled="true"
             android:layout_marginTop="8dp"
             android:layout_marginBottom="8dp">
-            <EditText android:id="@+id/user_ac_text"
+            <EditText
+                android:id="@+id/user_ac_text"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:inputType="textEmailAddress"
