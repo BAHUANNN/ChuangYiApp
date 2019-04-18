@@ -5,14 +5,21 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.support.v7.app.AppCompatActivity;
+import android.text.Layout;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.LinearLayout;
 
 import com.example.hp.chuangyiapp.App;
+import com.example.hp.chuangyiapp.R;
 
 import java.lang.ref.WeakReference;
 
 public class BaseActivity extends AppCompatActivity {
 
     private LoginStatusReceiver receiver;
+    private LinearLayout requestOut;
 
     class LoginStatusReceiver extends BroadcastReceiver{
         private WeakReference<BaseActivity> weakActivty;
@@ -42,5 +49,16 @@ public class BaseActivity extends AppCompatActivity {
     protected void onDestroy() {
         super.onDestroy();
         if(receiver != null)unregisterReceiver(receiver);
+    }
+
+    public void whenRequestOut(){
+        requestOut = (LinearLayout)LayoutInflater.from(this).inflate(R.layout.request_out,null);
+        LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(
+                LinearLayout.LayoutParams.MATCH_PARENT,LinearLayout.LayoutParams.MATCH_PARENT);
+        this.addContentView(requestOut,lp);
+    }
+
+    public void whenRequstIn(){
+        if(requestOut != null)requestOut.setVisibility(View.GONE);
     }
 }

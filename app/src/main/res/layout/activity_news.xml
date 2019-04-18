@@ -40,7 +40,7 @@
                 android:id="@+id/content_text"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:paddingTop="10dp"
+                android:paddingTop="20dp"
                 android:textSize="18sp"
                 android:textColor="@color/textColorPrimary"/>
 

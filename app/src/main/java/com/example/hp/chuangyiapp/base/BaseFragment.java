@@ -49,4 +49,6 @@ public class BaseFragment extends Fragment {
             getActivity().unregisterReceiver(receiver);
         }
     }
+
+
 }

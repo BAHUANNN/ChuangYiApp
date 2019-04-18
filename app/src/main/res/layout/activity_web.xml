@@ -1,12 +1,38 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
+<FrameLayout
     xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical">
+    android:layout_height="match_parent">
 
-    <com.example.hp.chuangyiapp.block.web.ChuangWebView
+    <LinearLayout
+        android:id="@+id/error_layout"
+        android:orientation="vertical" android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/colorPrimaryLight"
+        android:clickable="true"
+        android:focusable="true">
+
+        <ImageView
+            android:layout_width="200dp"
+            android:layout_height="200dp"
+            android:layout_marginTop="100dp"
+            android:layout_gravity="center"
+            android:padding="50dp"
+            android:src="@drawable/ui_wifi"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="20dp"
+            android:text="加载失败"
+            android:textSize="20sp"
+            android:textColor="@color/textColorSecondary"/>
+
+    </LinearLayout>
+
+    <com.example.hp.chuangyiapp.ui.web.ChuangWebView
         android:id="@+id/web_view"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
-    </com.example.hp.chuangyiapp.block.web.ChuangWebView>
-</LinearLayout>
+    </com.example.hp.chuangyiapp.ui.web.ChuangWebView>
+</FrameLayout>

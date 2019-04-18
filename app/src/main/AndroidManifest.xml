@@ -14,7 +14,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".block.main.MainActivity">
+        <activity android:name=".ui.main.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <action android:name="android.intent.action.VIEW" />
@@ -23,17 +23,17 @@
             </intent-filter>
         </activity>
         <activity android:name=".base.BaseActivity" />
-        <activity android:name=".block.museum.MuseumActivity" />
-        <activity android:name=".block.museum.MuseumDetailActivity" />
-        <activity android:name=".block.main.home.HomeSearchActivity" />
-        <activity android:name=".block.login.LoginActivity" />
-        <activity android:name=".block.login.SignupActivity" />
-        <activity android:name=".block.web.WebActivity" />
-        <activity android:name=".block.main.AddActivity" />
+        <activity android:name=".ui.museum.MuseumActivity" />
+        <activity android:name=".ui.museum.MuseumDetailActivity" />
+        <activity android:name=".ui.main.home.HomeSearchActivity" />
+        <activity android:name=".ui.login.LoginActivity" />
+        <activity android:name=".ui.login.SignupActivity" />
+        <activity android:name=".ui.web.WebActivity" />
+        <activity android:name=".ui.main.AddActivity" />
         <activity
-            android:name=".block.main.circle.news.NewsActivity"
+            android:name=".ui.main.circle.news.NewsActivity"
             android:windowSoftInputMode="stateHidden|adjustPan" />
-        <activity android:name=".block.main.mine.AboutActivity" />
+        <activity android:name=".ui.main.mine.AboutActivity" />
 
     </application>
 
