@@ -21,6 +21,12 @@ public class HomeFragment extends BaseFragment {
 
     private RecyclerView recyclerView;
     private TextView searchText;
+
+    @Override
+    public void onHiddenChanged(boolean hidden) {
+        super.onHiddenChanged(hidden);
+    }
+
     private ArrayList<HomeItemBean> list = new ArrayList<>();
 
     @Nullable
