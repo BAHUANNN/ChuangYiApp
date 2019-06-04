@@ -15,7 +15,7 @@ import com.example.hp.chuangyiapp.App;
 import com.example.hp.chuangyiapp.R;
 import com.example.hp.chuangyiapp.base.BaseActivity;
 import com.example.hp.chuangyiapp.net.CampusFactory;
-import com.example.hp.chuangyiapp.net.bean.LoginBean;
+import com.example.base.net.bean.LoginBean;
 import com.example.hp.chuangyiapp.utils.LoginUtil;
 import com.google.gson.Gson;
 

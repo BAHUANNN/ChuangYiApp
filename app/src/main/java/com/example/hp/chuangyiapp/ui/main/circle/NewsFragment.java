@@ -10,13 +10,12 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Toast;
 
 import com.example.hp.chuangyiapp.R;
 import com.example.hp.chuangyiapp.adapter.NewsAdapter;
 import com.example.hp.chuangyiapp.base.BaseFragment;
 import com.example.hp.chuangyiapp.net.CampusFactory;
-import com.example.hp.chuangyiapp.net.bean.NewssBean;
+import com.example.base.net.bean.NewssBean;
 
 import java.util.ArrayList;
 import java.util.List;

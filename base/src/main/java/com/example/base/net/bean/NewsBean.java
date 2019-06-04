@@ -1,4 +1,4 @@
-package com.example.hp.chuangyiapp.net.bean;
+package com.example.base.net.bean;
 
 import java.util.List;
 

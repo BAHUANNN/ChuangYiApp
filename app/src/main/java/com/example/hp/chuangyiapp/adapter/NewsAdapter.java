@@ -11,7 +11,7 @@ import android.widget.TextView;
 import com.bumptech.glide.Glide;
 import com.example.hp.chuangyiapp.R;
 import com.example.hp.chuangyiapp.ui.main.circle.news.NewsActivity;
-import com.example.hp.chuangyiapp.net.bean.NewssBean;
+import com.example.base.net.bean.NewssBean;
 
 import java.util.List;
 

@@ -8,7 +8,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.example.hp.chuangyiapp.R;
-import com.example.hp.chuangyiapp.net.bean.NewsBean;
+import com.example.base.net.bean.NewsBean;
 
 import java.util.List;
 

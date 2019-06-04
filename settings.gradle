@@ -1,1 +1,1 @@
-include ':app', ':landmine'
+include ':app', ':landmine', ':base'

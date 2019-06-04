@@ -1,25 +1,22 @@
-package com.example.hp.chuangyiapp.net;
+package com.example.base.net;
 
-import com.example.hp.chuangyiapp.net.bean.LoginBean;
-import com.example.hp.chuangyiapp.net.bean.LoginParam;
-import com.example.hp.chuangyiapp.net.bean.NewsBean;
-import com.example.hp.chuangyiapp.net.bean.NewssBean;
-import com.example.hp.chuangyiapp.net.bean.StatesBean;
 
 import okhttp3.RequestBody;
-import retrofit2.Call;
 import retrofit2.http.Body;
-import retrofit2.http.Field;
-import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
 import retrofit2.http.Header;
 import retrofit2.http.Headers;
 import retrofit2.http.POST;
 import retrofit2.http.Path;
-import retrofit2.http.Query;
 import rx.Observable;
 
+import com.example.base.net.bean.*;
+
 public interface RetrofitService {
+
+    /*
+     *app
+     */
 
     //登陆
     @Headers({"Content-Type: application/json"})
@@ -50,6 +47,12 @@ public interface RetrofitService {
     @GET("feed/list/{page}")
     Observable<StatesBean> getStates(@Path("page") int page);
 
+
+    /*
+     *Landmine
+     */
+    @POST("todo")
+    Observable<Object> postInfor();
 
 
 }

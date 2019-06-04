@@ -11,7 +11,7 @@ import com.bumptech.glide.Glide;
 import com.example.hp.chuangyiapp.R;
 import com.example.hp.chuangyiapp.ui.museum.MuseumActivity;
 import com.example.hp.chuangyiapp.ui.web.WebActivity;
-import com.example.hp.chuangyiapp.net.bean.HomeItemBean;
+import com.example.base.net.bean.HomeItemBean;
 
 import java.util.ArrayList;
 

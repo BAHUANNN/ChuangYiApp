@@ -18,7 +18,7 @@ import com.example.hp.chuangyiapp.adapter.NewsCommentAdapter;
 import com.example.hp.chuangyiapp.base.BaseActivity;
 import com.example.hp.chuangyiapp.ui.login.LoginActivity;
 import com.example.hp.chuangyiapp.net.CampusFactory;
-import com.example.hp.chuangyiapp.net.bean.NewsBean;
+import com.example.base.net.bean.NewsBean;
 import com.example.hp.chuangyiapp.utils.DialogUtil;
 import com.example.hp.chuangyiapp.utils.LoginUtil;
 import com.google.gson.Gson;

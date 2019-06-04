@@ -13,7 +13,7 @@ import android.widget.TextView;
 import com.example.hp.chuangyiapp.R;
 import com.example.hp.chuangyiapp.adapter.HomeAdapter;
 import com.example.hp.chuangyiapp.base.BaseFragment;
-import com.example.hp.chuangyiapp.net.bean.HomeItemBean;
+import com.example.base.net.bean.HomeItemBean;
 
 import java.util.ArrayList;
 

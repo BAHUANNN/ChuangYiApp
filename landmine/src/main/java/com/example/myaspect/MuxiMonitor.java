@@ -29,7 +29,7 @@ public class MuxiMonitor {
 
     //在application执行初始化
     public static void init(String deviceId, String url) {
-        instance = new MuxiMonitor();
+        instance = getMonitor();
         instance.deviceId = deviceId;
         instance.inforBroker.setUrl(url);
 

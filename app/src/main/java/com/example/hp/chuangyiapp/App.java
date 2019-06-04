@@ -8,7 +8,7 @@ import android.provider.Settings;
 import android.support.v4.app.ActivityCompat;
 import android.telephony.TelephonyManager;
 
-import com.alibaba.android.arouter.launcher.ARouter;
+import com.example.base.Global;
 import com.example.myaspect.MuxiMonitor;
 
 import org.aspectj.lang.annotation.Around;
@@ -23,6 +23,7 @@ public class App extends Application {
     public void onCreate() {
         super.onCreate();
         instance = this;
+        Global. setApplication(this);
         MuxiMonitor.init(getDeviceId(), "url");
     }
 
