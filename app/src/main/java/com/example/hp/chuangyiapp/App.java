@@ -1,17 +1,11 @@
 package com.example.hp.chuangyiapp;
 
-import android.Manifest;
 import android.app.Application;
-import android.content.Context;
-import android.content.pm.PackageManager;
 import android.provider.Settings;
-import android.support.v4.app.ActivityCompat;
-import android.telephony.TelephonyManager;
 
 import com.example.base.Global;
 import com.example.myaspect.MuxiMonitor;
 
-import org.aspectj.lang.annotation.Around;
 
 
 public class App extends Application {

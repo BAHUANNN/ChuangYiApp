@@ -9,7 +9,6 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.Toast;
 
-import com.example.hp.chuangyiapp.App;
 import com.example.hp.chuangyiapp.R;
 import com.example.hp.chuangyiapp.adapter.MainViewPagerAdapter;
 import com.example.hp.chuangyiapp.base.BaseActivity;
@@ -19,14 +18,10 @@ import com.example.hp.chuangyiapp.ui.main.home.HomeFragment;
 import com.example.hp.chuangyiapp.ui.main.circle.CircleFragment;
 import com.example.hp.chuangyiapp.ui.main.mine.MineFragment;
 import com.example.hp.chuangyiapp.utils.DialogUtil;
-import com.example.hp.chuangyiapp.utils.FileUtils;
 import com.example.hp.chuangyiapp.utils.LoginUtil;
 
-import java.io.File;
-import java.io.IOException;
 import java.util.ArrayList;
 
-import dalvik.system.DexClassLoader;
 
 public class MainActivity extends BaseActivity {
 
@@ -44,41 +39,10 @@ public class MainActivity extends BaseActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        loadDexClass();
         initView();
         initViewPage();
     }
 
-    private void loadDexClass() {
-        File cacheFile = FileUtils.getCacheDir(App.getInstance());
-        String internalPath = cacheFile.getAbsolutePath() + File.separator + "Dynamic.dex";
-        File desFile = new File(internalPath);
-        try {
-            if (!desFile.exists()) {
-                desFile.createNewFile();
-                // 从assets目录下 copy 文件到 app/data/cache目录
-                FileUtils.copyFiles(App.getInstance(), "Dynamic.dex", desFile);
-            }
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-
-        // 这里由于是加载 jar文件，所以采用DexClassLoader
-        //下面开始加载dex class
-        DexClassLoader dexClassLoader = new DexClassLoader(internalPath, cacheFile.getAbsolutePath(), null, getClassLoader());
-        try {
-            // 类加载器负责读取 .class文件，并把它转为 Class实例，这个实例就表示一个java类
-            // 加载 dex文件中的Class，格式是：包名+类名（全类名）
-            Class libClazz = dexClassLoader.loadClass("hp.test.Dynamic");
-            // 调用Class的 newInstance()方法，创建Class的对象 dynamic
-            // Dynamic 是 dex文件中之前的一个接口类
-            IDynamic dynamic = (IDynamic) libClazz.newInstance();
-            if (dynamic != null)
-                Toast.makeText(this, dynamic.say(), Toast.LENGTH_LONG).show();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
 
     private void initViewPage() {
         fragments.add(new HomeFragment());

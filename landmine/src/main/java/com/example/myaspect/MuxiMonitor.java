@@ -13,9 +13,6 @@ public class MuxiMonitor {
 
     private volatile static MuxiMonitor instance = null;
 
-    public MuxiMonitor() {
-    }
-
     public static MuxiMonitor getMonitor() {
         if (instance == null) {
             synchronized (MuxiMonitor.class) {
@@ -31,7 +28,6 @@ public class MuxiMonitor {
     public static void init(String deviceId, String url) {
         instance = getMonitor();
         instance.deviceId = deviceId;
-        instance.inforBroker.setUrl(url);
 
     }
 
